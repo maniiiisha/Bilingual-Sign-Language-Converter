@@ -6,6 +6,8 @@ import math
 import time
 import tkinter as tk
 from PIL import ImageTk, Image
+import operator
+from string import ascii_uppercase
 
 # Initialize variables
 cap = cv2.VideoCapture(0)  # Camera ID == 0
@@ -26,7 +28,8 @@ use_code2 = False
 
 # Create Tkinter window
 window = tk.Tk()
-window.title("Multilingual Sign Language Recognizer")
+window.geometry("800x600")
+window.title("Bilingual Sign Language Recognizer")
 
 # Tkinter icon
 window.iconbitmap("logo.ico")
@@ -99,7 +102,7 @@ chart_button2 = tk.Button(frame2, text="ISL Chart", command=lambda: show_chart("
 chart_button2.pack(side=tk.LEFT)
 
 # Create code label
-code_label = tk.Label(window, text="Sign Language: American Sign Language", font=("Arial", 14), fg="white", bg="black")
+code_label = tk.Label(window, text="Sign Language: American Sign Language", font=("Arial", 12), fg="white", bg="black")
 code_label.pack()
 
 # Initialize the current chart window
@@ -144,6 +147,7 @@ def video_loop():
                 cv2.putText(imgOutput, labels[index], (x, y - 26), cv2.FONT_HERSHEY_COMPLEX, 1.7, (255, 255, 255), 2)
                 cv2.rectangle(imgOutput, (x - offset, y - offset), (x + w + offset, y + h + offset), (255, 0, 255), 4)
 
+        
         except:
             pass
 
